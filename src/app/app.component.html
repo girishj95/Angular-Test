@@ -1,0 +1,55 @@
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  &nbsp;&nbsp;&nbsp;
+  <span>Test</span>
+  <div class="spacer"></div>
+</div>
+
+<div class="content" role="main">
+
+  <div>
+    <label>Region:</label>
+    <select (change)="onSelectRegion($event)" class="width">
+      <option value="0">--Select--</option>
+      <option *ngFor="let region of regions" value={{region.name}}>{{region.name}}</option>
+    </select>
+
+    <br /><br />
+
+
+    <label>Countries:</label>
+    <select (change)="onSelectCountries($event)" class="width">
+      <option value="0">--Select--</option>
+      <option *ngFor="let countrie of countries " value={{countrie.name}}>{{countrie.name}}</option>
+    </select>
+  </div>
+
+</div>
+
+<table *ngIf="showtable" class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Capital</th>
+      <th scope="col">Population</th>
+      <th scope="col">Currencies</th>
+      <th scope="col">Flag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let countrie of data; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        {{ countrie.name }}
+      </td>
+      <td>{{ countrie.capital }}</td>
+      <td>{{ countrie.population | number }}</td>
+      <td>{{countrie.currencies[0].symbol}}</td>
+      <td><img [src]="countrie.flag" class="me-2" style="width: 20px" /></td>
+    </tr>
+  </tbody>
+</table>
+
+
+<router-outlet></router-outlet>
